@@ -9,18 +9,7 @@
   grid-template-columns: 2fr 10fr;
   /* grid-gap: 10px; */
 }
-.header {
-  grid-area: h;
-}
-.nav {
-  grid-area: n;
-}
-.content {
-  grid-area: c;
-}
-.logo {
-  width: 60px;
-}
-li {
-  list-style: none;
-}
+
+
+
+
