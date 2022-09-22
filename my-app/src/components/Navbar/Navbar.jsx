@@ -6,23 +6,28 @@ export const Navbar = () => {
         <nav className={navbar.nav}>
             <ul className="nav-menu">
                 <li className="nav-link">
-                    <a href="#" className={`${navbar.link} ${navbar.active}`}>
+                    <a href="/profile" className={`${navbar.link} ${navbar.active}`}>
                         Profile
                     </a>
                 </li>
                 <li className="nav-link">
-                    <a href="#" className={navbar.link}>
+                    <a href="/dialogs" className={navbar.link}>
                         Messages
                     </a>
                 </li>
                 <li className="nav-link">
-                    <a href="#" className={navbar.link}>
+                    <a href="/news" className={navbar.link}>
                         News
                     </a>
                 </li>
                 <li className="nav-link">
-                    <a href="#" className={navbar.link}>
+                    <a href="/music" className={navbar.link}>
                         Music
+                    </a>
+                </li>
+                <li className="nav-link">
+                    <a href="/settings" className={navbar.link}>
+                       Settings
                     </a>
                 </li>
             </ul>
