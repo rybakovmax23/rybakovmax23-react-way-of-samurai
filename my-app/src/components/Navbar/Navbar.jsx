@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import navbar from './Navbar.module.css';
 
 export const Navbar = () => {
@@ -6,29 +7,29 @@ export const Navbar = () => {
         <nav className={navbar.nav}>
             <ul className="nav-menu">
                 <li className="nav-link">
-                    <a href="/profile" className={`${navbar.link} ${navbar.active}`}>
+                    <NavLink to="/profile" className={navData => navData.isActive ? navbar.active : navbar.link}>
                         Profile
-                    </a>
+                    </NavLink>
                 </li>
                 <li className="nav-link">
-                    <a href="/dialogs" className={navbar.link}>
+                    <NavLink to="/dialogs" className={navData => navData.isActive ? navbar.active : navbar.link}>
                         Messages
-                    </a>
+                    </NavLink>
                 </li>
                 <li className="nav-link">
-                    <a href="/news" className={navbar.link}>
+                    <NavLink to="/news" className={navData => navData.isActive ? navbar.active : navbar.link}>
                         News
-                    </a>
+                    </NavLink>
                 </li>
                 <li className="nav-link">
-                    <a href="/music" className={navbar.link}>
+                    <NavLink to="/music" className={navData => navData.isActive ? navbar.active : navbar.link}>
                         Music
-                    </a>
+                    </NavLink>
                 </li>
                 <li className="nav-link">
-                    <a href="/settings" className={navbar.link}>
-                       Settings
-                    </a>
+                    <NavLink to="/settings" className={navData => navData.isActive ? navbar.active : navbar.link}>
+                        Settings
+                    </NavLink>
                 </li>
             </ul>
         </nav>

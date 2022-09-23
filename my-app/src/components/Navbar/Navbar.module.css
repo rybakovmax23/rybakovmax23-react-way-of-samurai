@@ -5,12 +5,12 @@
 li {
   list-style: none;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-.link{
-    color:white
+.link {
+  color: white;
 }
-.active{
+a .active {
   color: fuchsia;
 }
