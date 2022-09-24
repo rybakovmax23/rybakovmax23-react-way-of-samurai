@@ -3,9 +3,8 @@ import profile from './MyPosts.module.css'
 import { Post } from "./Post/Post";
 
 export const MyPosts = (props) => {
-  
 
-    let postElement = props.post.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
+    let postElement = props.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
     return (
         <div className={profile.postsBlock}>
             <h3>Posts</h3>

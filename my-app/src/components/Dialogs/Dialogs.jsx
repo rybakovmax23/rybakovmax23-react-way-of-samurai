@@ -19,8 +19,8 @@ const MessageItem = (props) => {
 
 export const Dialogs = (props) => {
 
-    let dialogsElement = props.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
-    let messagesElement = props.messages.map(el => <MessageItem key={el.id} message={el.message} />)
+    let dialogsElement = props.state.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
+    let messagesElement = props.state.messages.map(el => <MessageItem key={el.id} message={el.message} />)
     return (
         <div className={style.dialogs}>
             <div className={style.dialogs_items}>
