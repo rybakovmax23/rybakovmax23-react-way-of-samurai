@@ -3,17 +3,28 @@ import profile from './MyPosts.module.css'
 import { Post } from "./Post/Post";
 
 export const MyPosts = (props) => {
+    const postElement = props.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
+    const newPostElement = React.createRef()
 
-    let postElement = props.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
+    const addPost = () => {
+        props.dispatch({ type: 'ADD-POST' })
+    }
+
+    const onPostChange = () => {
+        const text = newPostElement.current.value
+        const action = { type: "UPDATE-NEW-POST-TEXT", newText: text }
+        props.dispatch(action)
+    }
+
     return (
         <div className={profile.postsBlock}>
             <h3>Posts</h3>
             <div>
                 <div>
-                    <textarea name="new post" id="" cols="50" rows="5"></textarea>
+                    <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText} name="new post" id="" cols="50" rows="5" />
                 </div>
                 <div>
-                    <button className="send">send</button>
+                    <button onClick={addPost} className="send">send</button>
                 </div>
             </div>
             <div className={profile.posts}>
