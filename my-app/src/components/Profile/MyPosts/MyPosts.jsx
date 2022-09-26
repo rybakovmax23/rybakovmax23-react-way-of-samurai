@@ -1,19 +1,23 @@
 import React from "react";
+import { addPostActionCreator, updateNewPostActionCreator } from "../../../state/profile-reducer";
 import profile from './MyPosts.module.css'
 import { Post } from "./Post/Post";
 
-export const MyPosts = (props) => {
-    const postElement = props.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
-    const newPostElement = React.createRef()
 
+
+
+
+export const MyPosts = (props) => {
+    const pageInfo = props.store.getState().profilePage
+    const postElement = pageInfo.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
     const addPost = () => {
-        props.dispatch({ type: 'ADD-POST' })
+        props.store.dispatch(addPostActionCreator())
     }
 
-    const onPostChange = () => {
-        const text = newPostElement.current.value
-        const action = { type: "UPDATE-NEW-POST-TEXT", newText: text }
-        props.dispatch(action)
+    const onPostChange = (e) => {
+        const text = e.target.value
+        const action = updateNewPostActionCreator(text)
+        props.store.dispatch(action)
     }
 
     return (
@@ -21,7 +25,7 @@ export const MyPosts = (props) => {
             <h3>Posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText} name="new post" id="" cols="50" rows="5" />
+                    <textarea  onChange={onPostChange} value={pageInfo.newPostText} name="new post" id="" cols="50" rows="5" />
                 </div>
                 <div>
                     <button onClick={addPost} className="send">send</button>

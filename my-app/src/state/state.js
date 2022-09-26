@@ -1,3 +1,7 @@
+import { dialogsReducer } from "./dialogs-reducer";
+import { profileReducer } from "./profile-reducer";
+
+
 export let store = {
   _state: {
     profilePage: {
@@ -22,6 +26,7 @@ export let store = {
         { id: 4, message: "yo" },
         { id: 5, message: "yo" },
       ],
+      newMessageBody: "",
     },
   },
   _callSubscriber() {
@@ -30,36 +35,16 @@ export let store = {
   getState() {
     return this._state;
   },
-  addPost() {
-    const newPost = {
-      id: this._state.profilePage.posts.length + 1,
-      post: this._state.profilePage.newPostText,
-      likesCount: 0,
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = "";
-    this._callSubscriber(this._state);
-  },
-  updateNewPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
+
   subscribe(observer) {
     this._callSubscriber = observer;
   },
   dispatch(action) {
-    if (action.type === "ADD-POST") {
-      const newPost = {
-        id: this._state.profilePage.posts.length + 1,
-        post: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
+    this._callSubscriber(this._state);
   },
 };
+
+
+
