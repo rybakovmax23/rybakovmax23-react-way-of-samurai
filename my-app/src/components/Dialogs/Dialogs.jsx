@@ -5,13 +5,11 @@ import { MessageItem } from "./Message/MessageItem";
 
 
 export const Dialogs = (props) => {
-
     const dialogsElement = props.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
     const messagesElement = props.messages.map(el => <MessageItem key={el.id} message={el.message} />)
-    const newMessageBody = props.newMessageBody
 
     const onSendMessageClick = () => {
-        props.SendMessage()
+        props.sendMessage()
     }
 
     const onNewMessageChange = (e) => {
@@ -26,7 +24,7 @@ export const Dialogs = (props) => {
             <div className={style.messages}>
                 <div>{messagesElement}</div>
                 <div>
-                    <div><textarea onChange={onNewMessageChange} value={newMessageBody} placeholder="Enter your message" /></div>
+                    <div><textarea onChange={onNewMessageChange} value={props.newMessageBody} placeholder="Enter your message" /></div>
                     <div><button onClick={onSendMessageClick}>Send</button></div>
                 </div>
             </div>

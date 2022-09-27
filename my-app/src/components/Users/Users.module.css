@@ -1,0 +1,8 @@
+.userPhoto {
+  width: 100px;
+}
+.userInfo,
+.description {
+  display: flex;
+}
+
