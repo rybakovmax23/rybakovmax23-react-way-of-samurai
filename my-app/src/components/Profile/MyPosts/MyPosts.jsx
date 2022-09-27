@@ -5,7 +5,6 @@ import { Post } from "./Post/Post";
 
 
 
-
 export const MyPosts = (props) => {
     const postElement = props.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
     const onAddPost = () => {
@@ -34,3 +33,4 @@ export const MyPosts = (props) => {
         </div>
     )
 }
+
