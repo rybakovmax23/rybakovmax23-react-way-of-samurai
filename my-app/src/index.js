@@ -6,6 +6,7 @@ import App from "./App";
 // import { addPost, subscribe, updateNewPostText } from "./state/state";
 import { store } from "./redux/redux-store";
 import { BrowserRouter } from "react-router-dom";
+import { StoreContext } from "./StoreContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -13,7 +14,9 @@ const rerenderEntireTree = (state) => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App store={store} />
+        <StoreContext.Provider value={store}>
+          <App />
+        </StoreContext.Provider>
       </BrowserRouter>
     </React.StrictMode>
   );
