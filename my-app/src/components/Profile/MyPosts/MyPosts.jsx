@@ -1,5 +1,5 @@
 import React from "react";
-import { addPostActionCreator, updateNewPostActionCreator } from "../../../state/profile-reducer";
+import { addPostActionCreator, updateNewPostActionCreator } from "../../../redux/profile-reducer";
 import profile from './MyPosts.module.css'
 import { Post } from "./Post/Post";
 
@@ -8,7 +8,7 @@ import { Post } from "./Post/Post";
 
 
 export const MyPosts = (props) => {
-    const pageInfo = props.store.getState().profilePage
+    const pageInfo = props.store.getState().profileReducer
     const postElement = pageInfo.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
     const addPost = () => {
         props.store.dispatch(addPostActionCreator())
