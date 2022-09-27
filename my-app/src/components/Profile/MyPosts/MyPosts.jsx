@@ -1,5 +1,4 @@
 import React from "react";
-import { addPostActionCreator, updateNewPostActionCreator } from "../../../redux/profile-reducer";
 import profile from './MyPosts.module.css'
 import { Post } from "./Post/Post";
 
@@ -8,16 +7,14 @@ import { Post } from "./Post/Post";
 
 
 export const MyPosts = (props) => {
-    const pageInfo = props.store.getState().profileReducer
-    const postElement = pageInfo.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
-    const addPost = () => {
-        props.store.dispatch(addPostActionCreator())
+    const postElement = props.posts.map(el => <Post key={el.id} message={el.post} likesCount={el.likesCount} />)
+    const onAddPost = () => {
+        props.addPost()
     }
 
     const onPostChange = (e) => {
         const text = e.target.value
-        const action = updateNewPostActionCreator(text)
-        props.store.dispatch(action)
+        props.updateNewPostText(text)
     }
 
     return (
@@ -25,10 +22,10 @@ export const MyPosts = (props) => {
             <h3>Posts</h3>
             <div>
                 <div>
-                    <textarea  onChange={onPostChange} value={pageInfo.newPostText} name="new post" id="" cols="50" rows="5" />
+                    <textarea onChange={onPostChange} value={props.newPostText} name="new post" id="" cols="50" rows="5" />
                 </div>
                 <div>
-                    <button onClick={addPost} className="send">send</button>
+                    <button onClick={onAddPost} className="send">send</button>
                 </div>
             </div>
             <div className={profile.posts}>

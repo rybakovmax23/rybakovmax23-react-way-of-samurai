@@ -1,40 +1,23 @@
 import React from "react"
-import { NavLink } from "react-router-dom";
-import { sendMessageCreator, updateNewMessageBodyCreator } from "../../redux/dialogs-reducer";
 import style from './Dialogs.module.css'
+import { DialogItem } from "./DialogsItem/DialogItem";
+import { MessageItem } from "./Message/MessageItem";
 
-const DialogItem = (props) => {
-    const path = `/dialogs/${props.id}`
-    return (
-        <div >
-            <NavLink to={path} className={style.item}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-const MessageItem = (props) => {
-    return (
-        <div className={style.message}>{props.message}</div>
-    )
-}
 
 export const Dialogs = (props) => {
 
-    const state = props.store.getState().dialogsReducer
-    const dialogsElement = state.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
-    const messagesElement = state.messages.map(el => <MessageItem key={el.id} message={el.message} />)
-    const newMessageBody = state.newMessageBody
-
+    const dialogsElement = props.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
+    const messagesElement = props.messages.map(el => <MessageItem key={el.id} message={el.message} />)
+    const newMessageBody = props.newMessageBody
 
     const onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.SendMessage()
     }
+
     const onNewMessageChange = (e) => {
         const body = e.target.value
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBody(body)
     }
-
-
     return (
         <div className={style.dialogs}>
             <div className={style.dialogs_items}>
